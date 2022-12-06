@@ -1,20 +1,24 @@
 class Calculator {
+    // Constructor function for the Calculator
     constructor(previousOperandTextElement, currentOperandTextElement) {
         this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
         this.clear();
     };
 
+    // Function to clear display
     clear() {
         this.currentOperand = '';
         this.previousOperand = '';
         this.operation = undefined;
     };
 
+    //Function to delete last value from display
     delete() {
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
     };
 
+    // Function to append value to current operand display
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) {
             return;
@@ -22,6 +26,7 @@ class Calculator {
         this.currentOperand = this.currentOperand.toString() + number.toString();
     };
 
+    // Function to choose operation for computation
     chooseOperation(operation) {
         if (this.currentOperand === '') {
             return;
@@ -34,6 +39,7 @@ class Calculator {
         this.currentOperand = '';
     };
 
+    // Function for calculator computation
     compute() {
         let computation
         const previous = parseFloat(this.previousOperand);
@@ -63,6 +69,7 @@ class Calculator {
         this.previousOperand = '';
     };
 
+    // Helper function to display number with decimal places and commas 
     getDisplayNumber(number) {
         const stringNumber = number.toString();
         const integerDigits = parseFloat(stringNumber.split('.')[0]);
@@ -85,6 +92,7 @@ class Calculator {
         };
     };
 
+    // Function to update display of the calculator
     updateDisplay() {
         this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
         if (this.operation != null) {
@@ -95,6 +103,8 @@ class Calculator {
     };
 };
 
+// ---------- Definition of variables ---------- //
+
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
 const equalsButton = document.querySelector('[data-equals]');
@@ -102,8 +112,9 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
-
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
+
+// ---------- Event listeners for all buttons ---------- //
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
