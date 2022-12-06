@@ -7,7 +7,43 @@
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, #00AAFF, #00FF6C);
+    background: linear-gradient(to right, #83b6d2, #02397d);
+}
+
+/* (A) FIXED WRAPPER */
+.hwrap {
+    overflow: hidden; /* HIDE SCROLL BAR */
+    background: linear-gradient(to right, #83b6d2, #02397d);
+    color: whitesmoke;
+}
+
+  /* (B) MOVING TICKER WRAPPER */
+.hmove { 
+    display: flex; 
+}
+
+  /* (C) ITEMS - INTO A LONG HORIZONTAL ROW */
+.hitem {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.75rem;
+}
+
+  /* (D) ANIMATION - MOVE ITEMS FROM RIGHT TO LEFT */
+  /* 4 ITEMS -400%, CHANGE THIS IF YOU ADD/REMOVE ITEMS */
+@keyframes tickerh {
+    0% { transform: translate3d(100%, 0, 0); }
+    100% { transform: translate3d(-400%, 0, 0); }
+}
+.hmove { 
+    animation: tickerh linear 25s infinite; 
+}
+
+.hmove:hover { 
+    animation-play-state: paused; 
 }
 
 .calculator-grid {
@@ -55,4 +91,15 @@ body {
 .output .current-operand {
     color: white;
     font-size: 2.5rem;
+}
+
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: whitesmoke;
 }
