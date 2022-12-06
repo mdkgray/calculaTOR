@@ -15,31 +15,33 @@ body {
     overflow: hidden; /* HIDE SCROLL BAR */
     background: linear-gradient(to right, #83b6d2, #02397d);
     color: whitesmoke;
+    padding-top: 10px;
 }
 
-  /* (B) MOVING TICKER WRAPPER */
+/* (B) MOVING TICKER WRAPPER */
 .hmove { 
     display: flex; 
 }
 
-  /* (C) ITEMS - INTO A LONG HORIZONTAL ROW */
+/* (C) ITEMS - INTO A LONG HORIZONTAL ROW */
 .hitem {
     flex-shrink: 0;
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
-    font-size: 1.75rem;
+    font-size: 1.6rem;
 }
 
-  /* (D) ANIMATION - MOVE ITEMS FROM RIGHT TO LEFT */
-  /* 4 ITEMS -400%, CHANGE THIS IF YOU ADD/REMOVE ITEMS */
+/* (D) ANIMATION - MOVE ITEMS FROM RIGHT TO LEFT */
+/* 4 ITEMS -400%, CHANGE THIS IF YOU ADD/REMOVE ITEMS */
 @keyframes tickerh {
     0% { transform: translate3d(100%, 0, 0); }
     100% { transform: translate3d(-400%, 0, 0); }
 }
+
 .hmove { 
-    animation: tickerh linear 25s infinite; 
+    animation: tickerh linear 40s infinite; 
 }
 
 .hmove:hover { 
@@ -50,7 +52,7 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
+    min-height: 80vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
