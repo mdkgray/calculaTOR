@@ -3,38 +3,63 @@ class Calculator {
         this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
         this.clear();
-    }
+    };
 
     clear() {
         this.currentOperand = '';
         this.previousOperand = '';
         this.operation = undefined;
-    }
+    };
 
-    delete() {}
+    delete() {};
 
     appendNumber(number) {
-        if (number === '.' && this.currentOperand.includes('.')) return
+        if (number === '.' && this.currentOperand.includes('.')) return;
         this.currentOperand = this.currentOperand.toString() + number.toString();
-    }
+    };
 
     chooseOperation(operation) {
-        if (this.currentOperand === '') return
+        if (this.currentOperand === '') return;
         if (this.previousOperand !== '') {
             this.compute();
-        }
+        };
         this.operation = operation;
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
-    }
+    };
 
-    compute() {}
+    compute() {
+        let computation
+        const previous = parseFloat(this.previousOperand);
+        const current = parseFloat(this.currentOperand);
+        if (isNaN(previous) || isNaN(current)) return;
+
+        switch (this.operation) {
+            case '+':
+                computation = previous + current;
+                break;
+            case '-':
+                computation = previous - current;
+                break;
+            case '*':
+                computation = previous * current;
+                break;
+            case '÷':
+                computation = previous / current;
+                break;
+            default:
+                return;                        
+        };
+        this.currentOperand = computation;
+        this.operation = undefined;
+        this.previousOperand = '';
+    };
 
     updateDisplay() {
-        this.currentOperandTextElement.innerText = this.currentOperand
-        this.previousOperandTextElement.innerText = this.previousOperand
-    }
-}
+        this.currentOperandTextElement.innerText = this.currentOperand;
+        this.previousOperandTextElement.innerText = this.previousOperand;
+    };
+};
 
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
@@ -48,14 +73,19 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        calculator.appendNumber(button.innerText)
-        calculator.updateDisplay()
-    })
-})
+        calculator.appendNumber(button.innerText);
+        calculator.updateDisplay();
+    });
+});
 
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
-        calculator.chooseOperation(button.innerText)
-        calculator.updateDisplay()
-    })
-})
+        calculator.chooseOperation(button.innerText);
+        calculator.updateDisplay();
+    });
+});
+
+equalsButton.addEventListener('click', button => {
+    calculator.compute();
+    calculator.updateDisplay();
+});
