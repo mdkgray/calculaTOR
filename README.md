@@ -2,7 +2,7 @@
 
 ## Description
 
-Trying to work something out but forgot your calculator at home? This is a simple calculator application will assist in solving all those daily mathematical problems! Made with JavaScript, HTML, and CSS. 
+Trying to work something out but forgot your calculator at home? This simple calculator application will assist in solving all those daily mathematical problems! Made with JavaScript, HTML, and CSS. 
 
 ## Link to deployed application
 
